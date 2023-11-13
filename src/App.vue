@@ -9,7 +9,6 @@ const startGame = () => {
   isPlaying.value = true;
 }
 
-
 </script>
 
 <template>

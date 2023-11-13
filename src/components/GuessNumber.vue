@@ -11,7 +11,7 @@ const message = ref("");
 const checkNumber = () => {
     const numberUser = + userValueInput.value;
 
-    if(previousGuesses.lenght >= countAttempts){
+    if(previousGuesses.lenght > countAttempts){
         message.value = "Game over!";
         return;
     }
@@ -26,7 +26,12 @@ const checkNumber = () => {
         message.value = `Correct number!`;
     }
 
-    countAttempts.value--;
+    if(countAttempts.value > 0){
+        countAttempts.value--;
+    } else {
+        message.value = `No more attempts!`;
+    }
+    
     userValueInput.value = "";
 }
 
@@ -38,6 +43,8 @@ const checkNumber = () => {
     <div id="wrapper">
         <label for="guessField">Guess a number</label>
         <input type="number" id="guessField" v-model="userValueInput">
+        <label for="numberAttempts">Number of attempts</label>
+        <input type="number" id="numberAttempts" v-model="countAttempts">
         <button class="button-check" @click="checkNumber">Check Guess</button>
 
         <div class="resultParas">
