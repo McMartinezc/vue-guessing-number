@@ -9,10 +9,10 @@ const message = ref("");
 
 
 const checkNumber = () => {
-    const numberUser = + userValueInput.value;
+    const numberUser = +userValueInput.value;
 
-    if(previousGuesses.lenght > countAttempts){
-        message.value = "Game over!";
+    if (countAttempts.value === 0) {
+        message.value = "No more attempts!";
         return;
     }
 
@@ -26,12 +26,12 @@ const checkNumber = () => {
         message.value = `Correct number!`;
     }
 
-    if(countAttempts.value > 0){
-        countAttempts.value--;
-    } else {
-        message.value = `No more attempts!`;
+    countAttempts.value--;
+
+    if (countAttempts.value === 0) {
+        message.value = "No more attempts!";
     }
-    
+
     userValueInput.value = "";
 }
 
